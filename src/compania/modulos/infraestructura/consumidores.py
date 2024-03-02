@@ -6,6 +6,7 @@ import asyncio
 from pulsar.schema import *
 from compania.seedwork.infraestructura import utils
 
+
 async def suscribirse_a_topico(topico: str, suscripcion: str, schema: Record, tipo_consumidor:_pulsar.ConsumerType=_pulsar.ConsumerType.Shared):
     try:
         async with aiopulsar.connect(f'pulsar://{utils.broker_host()}:6650') as cliente:
@@ -23,5 +24,5 @@ async def suscribirse_a_topico(topico: str, suscripcion: str, schema: Record, ti
                     await consumidor.acknowledge(mensaje)    
 
     except:
-        logging.error(f'ERROR: Suscribiendose al tópico! {topico}, {suscripcion}, {schema}')
+        logging.error('ERROR: Suscribiendose al tópico de eventos!')
         traceback.print_exc()
